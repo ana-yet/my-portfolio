@@ -1,4 +1,7 @@
 import React from "react";
+import image from "../../assets/me.jpg";
+
+// todo : add the social links
 
 const Banner = () => {
   return (
@@ -21,7 +24,7 @@ const Banner = () => {
             <a
               href="/cv.pdf"
               download
-              className="bg-orange-600 hover:bg-orange-700 text-white py-2 px-6 rounded-md transition"
+              className="bg-primary hover:bg-orange-700 text-white py-2 px-6 rounded-md transition"
             >
               Download CV
             </a>
@@ -34,9 +37,10 @@ const Banner = () => {
           </div>
         </div>
 
+        {/* image */}
         <div className="md:w-1/2 mt-10 md:mt-0 relative">
           <img
-            src="/path-to-your-image.jpg"
+            src={image}
             alt="Profile"
             className="w-full max-w-md mx-auto rounded-lg"
           />
@@ -44,9 +48,9 @@ const Banner = () => {
       </div>
 
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-        <div className="w-10 h-10 border-2 border-orange-600 rounded-full flex items-center justify-center animate-bounce">
+        <div className="w-10 h-10 border-2 border-primary rounded-full flex items-center justify-center animate-bounce">
           <svg
-            className="w-5 h-5 text-orange-600"
+            className="w-5 h-5 text-primary"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
