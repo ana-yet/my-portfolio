@@ -4,6 +4,7 @@
 
 @theme {
   --color-primary: #ff4900;
+  --color-accent: #e4e4e4;
 }
 
 body {
