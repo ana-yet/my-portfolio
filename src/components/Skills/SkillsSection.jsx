@@ -1,63 +1,118 @@
+import { motion } from "framer-motion";
 import SkillCard from "./SkillCard";
 
-const skills = [
-  {
-    name: "HTML",
-    icon: "https://img.icons8.com/color/48/html-5.png",
-    level: "Advanced",
-    percentage: 85,
-  },
-  {
-    name: "CSS",
-    icon: "https://img.icons8.com/color/48/css3.png",
-    level: "Advanced",
-    percentage: 80,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: "https://img.icons8.com/color/48/tailwindcss.png",
-    level: "Advanced",
-    percentage: 80,
-  },
-  {
-    name: "JavaScript",
-    icon: "https://img.icons8.com/color/48/javascript--v1.png",
-    level: "Intermediate",
-    percentage: 55,
-  },
-  {
-    name: "React",
-    icon: "https://img.icons8.com/color/48/react-native.png",
-    level: "Intermediate",
-    percentage: 50,
-  },
-  {
-    name: "Express.js",
-    icon: "https://img.icons8.com/ios/48/express-js.png",
-    level: "learning",
-    percentage: 30,
-  },
-  {
-    name: "MongoDB",
-    icon: "https://img.icons8.com/color/48/mongodb.png",
-    level: "learning",
-    percentage: 30,
-  },
-];
-
 const SkillsSection = () => {
+  const skills = [
+    {
+      name: "HTML",
+      icon: "https://img.icons8.com/color/96/html-5.png",
+      level: "Advanced",
+      percentage: 85,
+    },
+    {
+      name: "CSS",
+      icon: "https://img.icons8.com/color/96/css3.png",
+      level: "Advanced",
+      percentage: 80,
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "https://img.icons8.com/color/96/tailwindcss.png",
+      level: "Advanced",
+      percentage: 80,
+    },
+    {
+      name: "JavaScript",
+      icon: "https://img.icons8.com/color/96/javascript--v1.png",
+      level: "Intermediate",
+      percentage: 60,
+    },
+    {
+      name: "React",
+      icon: "https://img.icons8.com/color/96/react-native.png",
+      level: "Intermediate",
+      percentage: 60,
+    },
+    {
+      name: "Node.js",
+      icon: "https://img.icons8.com/color/96/nodejs.png",
+      level: "leading",
+      percentage: 30,
+    },
+    {
+      name: "Express.js",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg",
+      level: "learning",
+      percentage: 35,
+    },
+    {
+      name: "MongoDB",
+      icon: "https://img.icons8.com/color/96/mongodb.png",
+      level: "leading",
+      percentage: 50,
+    },
+    {
+      name: "GitHub",
+      icon: "https://img.icons8.com/color/96/github.png",
+      level: "Tool",
+      percentage: 90,
+    },
+    {
+      name: "VS Code",
+      icon: "https://img.icons8.com/color/96/visual-studio-code-2019.png",
+      level: "Tool",
+      percentage: 95,
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <section
-      id="skills"
-      className="my-20 container mx-auto px-4 text-center text-white"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 relative inline-block after:block after:h-[3px] after:w-20 after:bg-accent after:mx-auto after:mt-2">
-        My Skills
-      </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-3  mx-auto">
-        {skills.map((skill) => (
-          <SkillCard key={skill.name} skill={skill} />
-        ))}
+    <section id="skills" className="py-24">
+      <div className="container mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-4xl  font-bold text-white mb-4">
+            Tools & <span className="text-primary">Technologies</span>
+          </h2>
+          <div className="w-24 h-1 bg-accent bg-gradient-to-r from-accent to-primary mx-auto mb-12"></div>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {skills.map((skill) => (
+            <SkillCard key={skill.name} skill={skill} variants={cardVariants} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
