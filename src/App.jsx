@@ -1,5 +1,6 @@
 import AboutMe from "./components/AboutMe/AboutMe";
 import Banner from "./components/Banner/Banner";
+import ContactMe from "./components/Contact/ContactMe";
 import Navbar from "./components/Navbar/Navbar";
 import SkillsSection from "./components/Skills/SkillsSection";
 
@@ -10,6 +11,7 @@ function App() {
       <Banner />
       <AboutMe />
       <SkillsSection />
+      <ContactMe />
     </>
   );
 }
