@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
@@ -11,7 +11,7 @@ import {
 import FormInput from "./FormInput";
 import SocialLink from "./SocialLink";
 
-//  contact information items
+//  contact information
 const ContactInfoItem = ({ icon: Icon, text }) => (
   <motion.li
     className="flex items-center gap-4 text-gray-300"
@@ -38,6 +38,8 @@ const itemVariants = {
 };
 
 const ContactMe = () => {
+  const [status, setStatus] = useState("idle");
+
   const contactInfo = {
     email: "mdanayet.dev@gmail.com",
     phone: "+880 1733-552322",
@@ -62,18 +64,45 @@ const ContactMe = () => {
     },
   ];
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const formStatus = document.createElement("p");
-    formStatus.textContent = "Form submitted successfully! ";
-    formStatus.className = "text-accent mt-4";
-    event.target.parentNode.appendChild(formStatus);
+    const form = event.target;
 
-    event.target.reset();
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
 
-    setTimeout(() => {
-      formStatus.remove();
-    }, 4000);
+    setStatus("sending");
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_formApi}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+
+        setTimeout(() => {
+          setStatus("idle");
+        }, 5000);
+      } else {
+        setTimeout(() => {
+          setStatus("error");
+        }, 5000);
+      }
+    } catch (error) {
+      setTimeout(() => {
+        setStatus("error");
+      }, 5000);
+    }
   };
 
   return (
@@ -156,13 +185,18 @@ const ContactMe = () => {
                 />
                 <motion.button
                   type="submit"
+                  disabled={status === "sending" || status === "success"}
                   className="w-full bg-accent text-[#111111] font-bold py-4 px-8 rounded-lg shadow-lg
                              transition-all duration-300 ease-in-out
                              hover:bg-primary hover:text-white"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Send Message
+                  {status === "sending"
+                    ? "Sending..."
+                    : status === "success"
+                    ? "Message Sent!"
+                    : "Send Message"}
                 </motion.button>
               </form>
             </motion.div>

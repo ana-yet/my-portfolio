@@ -1,126 +1,204 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
+import logo from "../../assets/logo.png";
 
-// Navigation links
 const NAV_LINKS = [
-  { href: "/#about", name: "About Me" },
-  { href: "/#skills", name: "Skills" },
-  { href: "/#projects", name: "Projects" },
-  { href: "/#contact", name: "Contact Me" },
+  { href: "#about", name: "About" },
+  { href: "#skills", name: "Skills" },
+  { href: "#projects", name: "Projects" },
+  { href: "#contact", name: "Contact" },
 ];
 
-// Logo Component
-const Logo = () => (
-  <a
-    href="/"
-    className="text-white font-bold text-2xl md:text-3xl hover:text-primary transition-colors duration-300"
-  >
-    MD<span className="text-primary">A</span>M
-  </a>
-);
+const Logo = () => <img className="w-60" src={logo} alt="logo" />;
 
-// CV Download Button
-const DownloadButton = ({ className = "" }) => (
-  <a
-    href="/path-to-your-cv.pdf"
+const DownloadButton = ({ isMobile = false }) => (
+  <motion.a
+    href="/cv.pdf"
     download
-    className={`bg-primary hover:bg-primary-dark py-2 px-6 rounded-md text-white font-medium transition duration-300 transform hover:scale-105 ${className}`}
+    className={`font-bold text-white py-2.5 px-6 rounded-lg transition-all duration-300 ease-in-out shadow-lg ${
+      isMobile
+        ? "w-full text-center bg-primary"
+        : "bg-primary hover:bg-opacity-80"
+    }`}
+    whileHover={{ scale: 1.05, y: -2 }}
+    whileTap={{ scale: 0.95 }}
   >
     Download CV
-  </a>
+  </motion.a>
 );
 
-// NavLinks Component
-const NavLinks = ({ onLinkClick }) => {
-  const [active, setActive] = useState("");
+const NavLinks = ({ onLinkClick, isMobile = false }) => {
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    setActive(window.location.hash);
+    // active section
+    const handleScroll = () => {
+      const sections = NAV_LINKS.map((link) =>
+        document.querySelector(link.href)
+      );
+      const scrollPosition = window.scrollY + 150;
 
-    const handleHashChange = () => setActive(window.location.hash);
-    window.addEventListener("hashchange", handleHashChange);
+      let currentSection = "";
+      for (const section of sections) {
+        if (
+          section &&
+          scrollPosition >= section.offsetTop &&
+          scrollPosition < section.offsetTop + section.offsetHeight
+        ) {
+          currentSection = section.id;
+          break;
+        }
+      }
+      setActiveSection(currentSection);
+    };
 
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const linkClass =
+    "relative text-lg md:text-base font-medium transition-colors duration-300 group py-2";
+  const activeClass = "text-primary";
+  const inactiveClass = "text-white";
+
   return (
-    <nav className="text-white text-base font-medium flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
-      {NAV_LINKS.map((item) => (
-        <a
-          key={item.name}
-          href={item.href}
-          onClick={onLinkClick}
-          className={`relative group transition-colors duration-300 ${
-            active === item.href ? "text-primary" : "hover:text-primary"
-          }`}
-        >
-          {item.name}
-          <span
-            className={`absolute left-0 -bottom-1 h-[2px] bg-primary transition-all duration-300
-              ${active === item.href ? "w-full" : "w-0 group-hover:w-full"}`}
-          ></span>
-        </a>
-      ))}
+    <nav
+      className={`flex ${
+        isMobile
+          ? "flex-col space-y-6 items-center"
+          : "flex-row items-center space-x-8"
+      }`}
+    >
+      {NAV_LINKS.map((link) => {
+        const isActive = activeSection === link.href.substring(1);
+        return (
+          <a
+            key={link.name}
+            href={link.href}
+            onClick={onLinkClick}
+            className={`${linkClass} ${
+              isActive ? activeClass : `${inactiveClass} hover:text-primary`
+            }`}
+          >
+            {link.name}
+            {isActive ? (
+              <motion.span
+                layoutId="underline"
+                className="absolute left-0 -bottom-1 h-0.5 w-full bg-primary"
+                initial={false}
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              />
+            ) : (
+              <span
+                className="absolute left-0 -bottom-1 h-0.5 w-full bg-primary
+                           transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+              />
+            )}
+          </a>
+        );
+      })}
     </nav>
   );
 };
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
+  //navbar background change on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  //lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
-    return () => (document.body.style.overflow = "unset");
   }, [isMenuOpen]);
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+  const navClass = `fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    hasScrolled
+      ? "py-4 bg-[#111111]/80 backdrop-blur-sm shadow-lg"
+      : "py-6 bg-transparent"
+  }`;
+
   return (
-    <nav className="relative flex justify-between items-center py-4 container mx-auto px-4 sm:px-6 lg:px-8">
-      <Logo />
+    <header className={navClass}>
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <Logo />
 
-      {/*  Desktop Nav */}
-      <div className="hidden md:flex items-center space-x-8">
-        <NavLinks />
-        <DownloadButton />
-      </div>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
+          <NavLinks />
+          <DownloadButton />
+        </div>
 
-      {/* Mobile Menu Toggle */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={toggleMenu}
-          className="text-white text-3xl focus:outline-none"
-          aria-label="Toggle menu"
-          aria-controls="mobile-menu"
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? <IoMdClose /> : <IoMdMenu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        id="mobile-menu"
-        className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={closeMenu}
-      >
-        <div
-          className={`fixed top-0 right-0 h-full w-64 bg-gray-800 shadow-lg p-6 z-50 transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/*  Mobile NavLinks */}
-          <div className="flex flex-col space-y-8 pt-10">
-            <NavLinks onLinkClick={closeMenu} />
-            <DownloadButton />
-          </div>
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <motion.button
+            onClick={toggleMenu}
+            className="text-white text-3xl z-50"
+            aria-label="Toggle Menu"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <AnimatePresence mode="wait">
+              {isMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                >
+                  <IoMdClose />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                >
+                  <IoMdMenu />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div
+              className="md:hidden fixed inset-0 bg-black/50 z-30"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+            />
+            <motion.div
+              className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#161616] p-8 flex flex-col items-center justify-center space-y-10 z-40"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", ease: "easeInOut" }}
+            >
+              <NavLinks onLinkClick={closeMenu} isMobile />
+              <DownloadButton isMobile />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

@@ -23,7 +23,7 @@ const Banner = () => {
     },
   };
   return (
-    <section className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative">
+    <section className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative my-24">
       <motion.div
         variants={containerVariants}
         initial="hidden"

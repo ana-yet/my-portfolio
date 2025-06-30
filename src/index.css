@@ -7,6 +7,9 @@
   --color-accent: #cbd5e0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: #060606;
   font-family: "Poppins", sans-serif;
