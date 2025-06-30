@@ -5,6 +5,7 @@ import { IoMdClose, IoMdMenu } from "react-icons/io";
 const NAV_LINKS = [
   { href: "/#about", name: "About Me" },
   { href: "/#skills", name: "Skills" },
+  { href: "/#projects", name: "Projects" },
   { href: "/#contact", name: "Contact Me" },
 ];
 
@@ -14,7 +15,7 @@ const Logo = () => (
     href="/"
     className="text-white font-bold text-2xl md:text-3xl hover:text-primary transition-colors duration-300"
   >
-    ANAYET
+    MD<span className="text-primary">A</span>M
   </a>
 );
 

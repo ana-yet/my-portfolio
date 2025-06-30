@@ -65,8 +65,7 @@ const ContactMe = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formStatus = document.createElement("p");
-    formStatus.textContent =
-      "Form submitted successfully! (This is a placeholder)";
+    formStatus.textContent = "Form submitted successfully! ";
     formStatus.className = "text-accent mt-4";
     event.target.parentNode.appendChild(formStatus);
 
@@ -78,8 +77,8 @@ const ContactMe = () => {
   };
 
   return (
-    <section id="contact" className="py-24">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="pb-24 pt-16">
+      <div className="container mx-auto">
         {/* Section Title */}
         <motion.div
           className="text-center mb-12"

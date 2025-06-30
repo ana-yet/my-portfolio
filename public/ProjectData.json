@@ -1,0 +1,64 @@
+[
+  {
+    "title": "Service Review System",
+    "description": "A full-featured review platform where users can explore services, leave ratings, and manage personal feedback. Built with secure authentication and a responsive, interactive UI.",
+    "features": [
+      "Users can leave reviews and star ratings for services",
+      "User dashboard showing personal services and reviews",
+      "Responsive UI for mobile and desktop devices",
+      "Filter/search services by category or name"
+    ],
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Express.js",
+      "MongoDB",
+      "Firebase",
+      "JWT Authentication"
+    ],
+    "githubLink": "https://github.com/ana-yet/review-sys-client",
+    "liveLink": "https://review-system-app.web.app/",
+    "imageUrl": "https://i.ibb.co/nNBh29dD/review-system-app.png"
+  },
+  {
+    "title": "Recipe Book",
+    "description": "A visually-rich and interactive recipe-sharing platform designed for both beginners and seasoned cooks. Users can browse, upload, and manage recipes through a personalized dashboard with smooth animations and a delightful UI experience.",
+    "features": [
+      "Explore categorized dishes including Bachelor’s Meals and Beginner special",
+      "Like and interact with other users’ recipes (excluding own)",
+      "Detailed recipe view with ingredients, instructions, and cooking info",
+      "Responsive UI with image sliders, hover effects, and tooltips",
+      "Search and filter functionality across public recipe catalog"
+    ],
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Firebase",
+      "Express.js",
+      "MongoDB"
+    ],
+    "githubLink": "https://github.com/ana-yet/recipe-book-client",
+    "liveLink": "https://recipe-book-525e2.web.app/",
+    "imageUrl": "https://i.ibb.co/4RyLTDT5/recipe-book.png"
+  },
+  {
+    "title": "Job Hunter",
+    "description": "A client-side job exploration platform featuring job listings, company reviews, and insightful blogs. Built with a responsive design, interactive UI, and seamless navigation to help users find opportunities and resources effortlessly.",
+    "features": [
+      "Explore and read company reviews to evaluate employers",
+      "Access informative blogs related to career development",
+      "Search and filter job posts for specific criteria",
+      "Fully responsive design for both desktop and mobile"
+    ],
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Firebase",
+      "React Router DOM",
+      "Framer Motion"
+    ],
+    "githubLink": "https://github.com/ana-yet/job-hunter-source",
+    "liveLink": "https://job-hunter-seven.vercel.app/",
+    "imageUrl": "https://i.ibb.co/35pjJMN1/job-hunter.png"
+  }
+]

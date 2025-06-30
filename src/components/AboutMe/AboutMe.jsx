@@ -53,7 +53,7 @@ const AboutMe = () => {
   };
 
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-24 mt-24">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16"
