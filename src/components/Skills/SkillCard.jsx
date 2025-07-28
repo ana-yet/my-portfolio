@@ -1,12 +1,18 @@
+// src/components/SkillCard.js
+
 import { motion } from "framer-motion";
 
-const SkillCard = ({ skill, variants }) => {
+const SkillCard = ({ skill }) => {
   return (
     <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
       className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg text-center flex flex-col justify-between
-                 transition-all duration-300 ease-in-out
-                 hover:shadow-primary/20 hover:-translate-y-2"
-      variants={variants}
+                 transition-colors duration-300 ease-in-out
+                 hover:shadow-primary/20"
     >
       <div>
         <img

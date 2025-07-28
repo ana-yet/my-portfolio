@@ -53,7 +53,7 @@ const ContactMe = () => {
       label: "GitHub Profile",
     },
     {
-      href: "https://linkedin.com/in/md-anayet-miah",
+      href: "https://www.linkedin.com/in/ana-yet",
       icon: FaLinkedin,
       label: "LinkedIn Profile",
     },

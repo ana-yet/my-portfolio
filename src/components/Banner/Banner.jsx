@@ -23,7 +23,10 @@ const Banner = () => {
     },
   };
   return (
-    <section className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative my-24">
+    <section
+      id="home"
+      className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative my-24"
+    >
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -58,11 +61,10 @@ const Banner = () => {
           >
             <motion.a
               variants={itemVariants}
-              href="/cv.pdf"
-              download
+              href="#projects"
               className="bg-primary hover:bg-orange-700 text-white py-2 px-6 rounded-md transition"
             >
-              Download CV
+              Projects
             </motion.a>
             <motion.a
               variants={itemVariants}
@@ -95,7 +97,7 @@ const Banner = () => {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+      <div className="absolute -bottom-14 md:bottom-6 left-1/2 transform -translate-x-1/2">
         <div className="w-10 h-10 border-2 border-primary rounded-full flex items-center justify-center animate-bounce">
           <svg
             className="w-5 h-5 text-primary"

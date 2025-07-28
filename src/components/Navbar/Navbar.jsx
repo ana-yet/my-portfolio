@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
+import { FaGithub, FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { CiLinkedin } from "react-icons/ci";
+import { VscGithub, VscGithubInverted } from "react-icons/vsc";
+import { SiLinkedin } from "react-icons/si";
+import resume from "../../assets/Anayet-resume.pdf";
+import { MdDownloading } from "react-icons/md";
 
 const NAV_LINKS = [
+  { href: "#home", name: "Home" },
   { href: "#about", name: "About" },
   { href: "#skills", name: "Skills" },
   { href: "#projects", name: "Projects" },
   { href: "#contact", name: "Contact" },
 ];
 
-const Logo = () => <img className="w-60" src={logo} alt="logo" />;
+const Logo = () => (
+  <a href="/">
+    <img className="w-14 h-14" src={logo} alt="logo" />
+  </a>
+);
 
 const DownloadButton = ({ isMobile = false }) => (
   <motion.a
-    href="/cv.pdf"
+    href={resume}
     download
-    className={`font-bold text-white py-2.5 px-6 rounded-lg transition-all duration-300 ease-in-out shadow-lg ${
+    className={`font-bold inline-flex items-center justify-center gap-1.5 text-white py-2.5 px-6 rounded-lg transition-all duration-300 ease-in-out shadow-lg ${
       isMobile
         ? "w-full text-center bg-primary"
         : "bg-primary hover:bg-opacity-80"
@@ -24,7 +35,8 @@ const DownloadButton = ({ isMobile = false }) => (
     whileHover={{ scale: 1.05, y: -2 }}
     whileTap={{ scale: 0.95 }}
   >
-    Download CV
+    <MdDownloading size={24} />
+    Resume
   </motion.a>
 );
 
@@ -132,7 +144,27 @@ const Navbar = () => {
   return (
     <header className={navClass}>
       <div className="container mx-auto flex justify-between items-center px-4">
-        <Logo />
+        <div className="flex items-center gap-5 justify-center">
+          <Logo />
+          <div className="flex gap-3 justify-center items-center">
+            <a target="_blank" href="https://github.com/ana-yet">
+              <VscGithubInverted
+                size={28}
+                className="text-gray-500 hover:scale-105 transition-all duration-300 ease-in-out
+           rounded-md shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/40
+           backdrop-blur-sm hover:backdrop-blur-md"
+              />
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/ana-yet">
+              <SiLinkedin
+                size={28}
+                className="text-gray-500 hover:scale-105 transition-all duration-300 ease-in-out
+           rounded-md shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/40
+           backdrop-blur-sm hover:backdrop-blur-md"
+              />
+            </a>
+          </div>
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
