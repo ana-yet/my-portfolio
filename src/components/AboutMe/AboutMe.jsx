@@ -1,41 +1,27 @@
 import React from "react";
 import { motion } from "framer-motion";
-import image from "../../assets/me.jpg";
-
-const CheckIcon = () => (
-  <svg
-    className="w-5 h-5 mr-2 text-accent flex-shrink-0"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
-    <path
-      fillRule="evenodd"
-      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
 
 const AboutMe = () => {
   const bio = {
-    greeting: "Hi! I'm MD Anayet Miah.",
-    intro:
-      "A passionate and self-taught MERN Stack Developer from Bangladesh, dedicated to building modern web applications with clean UI and robust functionality.",
-    focus: [
-      "Writing clean, efficient, and maintainable code.",
-      "Building full-stack projects with the MERN stack.",
-      "Continuously learning and embracing new technologies.",
-      "Solving complex problems and turning ideas into reality.",
+    title: "About Me",
+    paragraphs: [
+      "I started my programming journey in October last year, beginning with C language fundamentals like functions, arrays, variables, loops, and conditionals through YouTube tutorials. At first, I struggled to find structured learning and reliable answers to my questions, which made progress slow and sometimes frustrating.",
+      "That changed when I joined Programming Hero, where the disciplined, step-by-step approach motivated me to push harder and stay consistent.",
+      "From childhood, I was curious about how video games work and how they are made. That curiosity fueled my passion for coding and led me to dive deeper into web development, especially the MERN stack.",
+      "Learning React was challenging—I often understood concepts but struggled to implement them at first, which made me pause and rethink my approach. However, by building small projects, I gained confidence and eventually mastered React's logic.",
+      "I enjoy working on both frontend and backend development, with a growing preference for backend work. Solving complex problems excites me because each solution boosts my confidence and drives me to learn more. I believe collaborating with a team is vital for growth and innovation.",
+      "Outside of programming, I enjoy playing Clash of Clans and football, and I listen to podcasts about self-improvement and inspiring life journeys.",
+      "My goal for the next two years is to become a highly skilled full-stack developer and share my knowledge by teaching junior developers. I also aim to work in a company environment where I can contribute to a team and continue growing professionally.",
     ],
-    cta: "I'm excited to collaborate, grow, and make a meaningful impact through code.",
   };
 
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
@@ -53,72 +39,57 @@ const AboutMe = () => {
   };
 
   return (
-    <section id="about" className="py-24">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="about" className="py-16 md:py-24 bg-[#0a0a0a]">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
-          {/* Left Column: Image */}
+          {/* Card Container */}
           <motion.div
-            className="w-full max-w-sm hidden md:block lg:w-1/3"
+            className="bg-[#111111] rounded-xl p-6 md:p-8 shadow-lg border border-gray-800"
             variants={itemVariants}
           >
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-              <figure className="relative bg-[#111111] p-2 rounded-lg leading-none flex items-center">
-                <img
-                  className="w-full h-auto rounded-md shadow-lg"
-                  src={image}
-                  alt="My Image"
-                />
-              </figure>
-            </div>
-          </motion.div>
-
-          {/*  Text Content */}
-          <motion.div
-            className="w-full lg:w-2/3 text-center lg:text-left"
-            variants={itemVariants}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              About <span className="text-primary">Me</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r to-primary from-accent mb-8 mx-auto lg:mx-0"></div>
-
-            <div className="text-lg text-gray-300 space-y-4">
-              <p className="font-semibold text-xl text-white">{bio.greeting}</p>
-              <p>{bio.intro}</p>
-
-              <ul className="space-y-3 pt-2 text-left inline-block">
-                {bio.focus.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-start"
-                    variants={itemVariants}
-                  >
-                    <CheckIcon />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
-              <p className="pt-4">{bio.cta}</p>
-            </div>
-
-            <motion.a
-              href="#contact"
-              className="inline-block mt-8 border-accent border-2 text-accent  font-bold py-3 px-8 rounded-lg shadow-lg
-                         transition-all duration-300 ease-in-out
-                         hover:text-primary hover:border-primary hover:scale-105
-                         "
+            {/* Title Section */}
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white mb-4"
               variants={itemVariants}
             >
-              Get In Touch
-            </motion.a>
+              About <span className="text-primary">Me</span>
+            </motion.h2>
+
+            <motion.div
+              className="w-24 h-1 bg-gradient-to-r from-primary to-accent mb-8"
+              variants={itemVariants}
+            />
+
+            {/* Content Section - Your exact text */}
+            <div className="space-y-6 text-gray-300">
+              {bio.paragraphs.map((paragraph, index) => (
+                <motion.p
+                  key={index}
+                  className="text-base md:text-lg leading-relaxed"
+                  variants={itemVariants}
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div className="mt-12" variants={itemVariants}>
+              <a
+                href="#contact"
+                className="inline-block border-2 border-primary text-primary font-medium py-2 px-6 rounded-lg
+                           transition-all duration-300 ease-in-out
+                           hover:bg-primary hover:text-white hover:scale-105
+                           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+              >
+                Get In Touch
+              </a>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
