@@ -25,7 +25,7 @@ const Banner = () => {
   return (
     <section
       id="home"
-      className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative my-24"
+      className="min-h-[calc(100vh-30vh)]  flex items-center  text-white relative my-14"
     >
       <motion.div
         variants={containerVariants}

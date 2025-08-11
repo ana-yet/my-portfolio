@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import logo from "../../assets/logo.webp";
-import { FaGithub, FaGithubSquare, FaLinkedin } from "react-icons/fa";
-import { CiLinkedin } from "react-icons/ci";
-import { VscGithub, VscGithubInverted } from "react-icons/vsc";
+import { VscGithubInverted } from "react-icons/vsc";
 import { SiLinkedin } from "react-icons/si";
 import resume from "../../assets/Anayet-resume.pdf";
 import { MdDownloading } from "react-icons/md";
@@ -18,8 +16,8 @@ const NAV_LINKS = [
 ];
 
 const Logo = () => (
-  <a href="/">
-    <img className="w-14 h-14" src={logo} alt="logo" />
+  <a href="/" className="flex-shrink-0">
+    <img className="w-12 h-12 md:w-14 md:h-14" src={logo} alt="logo" />
   </a>
 );
 
@@ -27,7 +25,7 @@ const DownloadButton = ({ isMobile = false }) => (
   <motion.a
     href={resume}
     download
-    className={`font-bold inline-flex items-center justify-center gap-1.5 text-white py-2.5 px-6 rounded-lg transition-all duration-300 ease-in-out shadow-lg ${
+    className={`font-bold inline-flex items-center justify-center gap-1.5 text-white py-2 px-4 md:py-2.5 md:px-6 rounded-lg transition-all duration-300 ease-in-out shadow-lg ${
       isMobile
         ? "w-full text-center bg-primary"
         : "bg-primary hover:bg-opacity-80"
@@ -35,8 +33,8 @@ const DownloadButton = ({ isMobile = false }) => (
     whileHover={{ scale: 1.05, y: -2 }}
     whileTap={{ scale: 0.95 }}
   >
-    <MdDownloading size={24} />
-    Resume
+    <MdDownloading size={20} className="md:size-6" />
+    <span className="text-sm md:text-base">Resume</span>
   </motion.a>
 );
 
@@ -44,12 +42,11 @@ const NavLinks = ({ onLinkClick, isMobile = false }) => {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    // active section
     const handleScroll = () => {
       const sections = NAV_LINKS.map((link) =>
         document.querySelector(link.href)
       );
-      const scrollPosition = window.scrollY + 150;
+      const scrollPosition = window.scrollY + 100;
 
       let currentSection = "";
       for (const section of sections) {
@@ -70,7 +67,7 @@ const NavLinks = ({ onLinkClick, isMobile = false }) => {
   }, []);
 
   const linkClass =
-    "relative text-lg md:text-base font-medium transition-colors duration-300 group py-2";
+    "relative text-base md:text-base font-medium transition-colors duration-300 group py-2";
   const activeClass = "text-primary";
   const inactiveClass = "text-white";
 
@@ -79,7 +76,7 @@ const NavLinks = ({ onLinkClick, isMobile = false }) => {
       className={`flex ${
         isMobile
           ? "flex-col space-y-6 items-center"
-          : "flex-row items-center space-x-8"
+          : "flex-row items-center space-x-4 md:space-x-8"
       }`}
     >
       {NAV_LINKS.map((link) => {
@@ -118,65 +115,72 @@ const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
-  //navbar background change on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setHasScrolled(window.scrollY > 50);
+      setHasScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  //lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [isMenuOpen]);
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  const navClass = `fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-    hasScrolled
-      ? "py-4 bg-[#111111]/80 backdrop-blur-sm shadow-lg"
-      : "py-6 bg-transparent"
-  }`;
-
   return (
-    <header className={navClass}>
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center gap-5 justify-center">
+    <header
+      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${
+        hasScrolled
+          ? "py-2 md:py-4 bg-[#111111]/90 backdrop-blur-sm shadow-lg"
+          : "py-3 md:py-6 bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
+        <div className="flex items-center gap-3 md:gap-5">
           <Logo />
-          <div className="flex gap-3 justify-center items-center">
-            <a target="_blank" href="https://github.com/ana-yet">
+          <div className="hidden sm:flex gap-2 md:gap-3 items-center">
+            <a
+              target="_blank"
+              href="https://github.com/ana-yet"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
               <VscGithubInverted
-                size={28}
-                className="text-gray-500 hover:scale-105 transition-all duration-300 ease-in-out
-           rounded-md shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/40
-           backdrop-blur-sm hover:backdrop-blur-md"
+                size={24}
+                className="text-gray-400 hover:text-white hover:scale-105 transition-all duration-300 ease-in-out"
               />
             </a>
-            <a target="_blank" href="https://www.linkedin.com/in/ana-yet">
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/ana-yet"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
               <SiLinkedin
-                size={28}
-                className="text-gray-500 hover:scale-105 transition-all duration-300 ease-in-out
-           rounded-md shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/40
-           backdrop-blur-sm hover:backdrop-blur-md"
+                size={24}
+                className="text-gray-400 hover:text-white hover:scale-105 transition-all duration-300 ease-in-out"
               />
             </a>
           </div>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           <NavLinks />
           <DownloadButton />
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
+        <div className="md:hidden z-50">
           <motion.button
             onClick={toggleMenu}
-            className="text-white text-3xl z-50"
+            className="text-white text-2xl p-2"
             aria-label="Toggle Menu"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -189,7 +193,7 @@ const Navbar = () => {
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
                 >
-                  <IoMdClose />
+                  <IoMdClose size={28} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -198,7 +202,7 @@ const Navbar = () => {
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
                 >
-                  <IoMdMenu />
+                  <IoMdMenu size={28} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -211,21 +215,59 @@ const Navbar = () => {
         {isMenuOpen && (
           <>
             <motion.div
-              className="md:hidden fixed inset-0 bg-black/50 z-30"
+              className="md:hidden fixed inset-0 bg-black/70 z-50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMenu}
             />
             <motion.div
-              className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#161616] p-8 flex flex-col items-center justify-center space-y-10 z-40"
+              className="md:hidden fixed top-0 right-0 h-screen w-72 bg-[#161616] p-6 flex flex-col items-center justify-start space-y-8 z-50 overflow-y-auto"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", ease: "easeInOut" }}
             >
+              <div className="w-full flex justify-between items-center mb-4">
+                <Logo />
+                <button
+                  onClick={closeMenu}
+                  className="text-white text-2xl p-2"
+                  aria-label="Close Menu"
+                >
+                  <IoMdClose size={28} />
+                </button>
+              </div>
+
+              <div className="flex sm:hidden gap-4 mb-4">
+                <a
+                  target="_blank"
+                  href="https://github.com/ana-yet"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <VscGithubInverted
+                    size={24}
+                    className="text-gray-400 hover:text-white hover:scale-105 transition-all duration-300 ease-in-out"
+                  />
+                </a>
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/ana-yet"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <SiLinkedin
+                    size={24}
+                    className="text-gray-400 hover:text-white hover:scale-105 transition-all duration-300 ease-in-out"
+                  />
+                </a>
+              </div>
+
               <NavLinks onLinkClick={closeMenu} isMobile />
-              <DownloadButton isMobile />
+              <div className="w-full px-4">
+                <DownloadButton isMobile />
+              </div>
             </motion.div>
           </>
         )}

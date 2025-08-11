@@ -64,7 +64,7 @@ const AboutMe = () => {
         >
           {/* Left Column: Image */}
           <motion.div
-            className="w-full max-w-sm lg:w-1/3"
+            className="w-full max-w-sm hidden md:block lg:w-1/3"
             variants={itemVariants}
           >
             <div className="relative group">
