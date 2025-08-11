@@ -1,5 +1,5 @@
-import { useState } from "react"; // 1. Import useState
-import { motion, AnimatePresence } from "framer-motion"; // 2. Import AnimatePresence
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SkillCard from "./SkillCard";
 
 const SkillsSection = () => {
@@ -29,36 +29,36 @@ const SkillsSection = () => {
     {
       name: "JavaScript",
       icon: "https://img.icons8.com/color/96/javascript--v1.png",
-      level: "Intermediate",
-      percentage: 60,
+      level: "Advanced",
+      percentage: 88,
       category: "Frontend",
     },
     {
       name: "React",
       icon: "https://img.icons8.com/color/96/react-native.png",
-      level: "Intermediate",
-      percentage: 60,
+      level: "Advanced",
+      percentage: 85,
       category: "Frontend",
     },
     {
       name: "Node.js",
       icon: "https://img.icons8.com/color/96/nodejs.png",
-      level: "Learning",
-      percentage: 30,
+      level: "Advanced",
+      percentage: 85,
       category: "Backend",
     },
     {
       name: "Express.js",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg",
-      level: "Learning",
-      percentage: 35,
+      level: "Advanced",
+      percentage: 85,
       category: "Backend",
     },
     {
       name: "MongoDB",
       icon: "https://img.icons8.com/color/96/mongodb.png",
-      level: "Intermediate",
-      percentage: 50,
+      level: "Advanced",
+      percentage: 80,
       category: "Backend",
     },
     {

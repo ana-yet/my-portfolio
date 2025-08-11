@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../assets/me.jpg";
+import image from "../../assets/me.png";
 import { motion } from "framer-motion";
 
 const Banner = () => {
@@ -86,7 +86,7 @@ const Banner = () => {
               className="absolute -inset-1.5 bg-gradient-to-r from-primary to-accent rounded-full blur-xl opacity-50
                                             group-hover:opacity-75 transition duration-500 animate-pulse"
             ></div>
-            <figure className="relative bg-[#111111] p-2 rounded-full leading-none flex items-center">
+            <figure className="relative bg-black p-2 rounded-full leading-none flex items-center">
               <img
                 src={image}
                 alt=" MD. Anayet Miah"
@@ -99,19 +99,21 @@ const Banner = () => {
 
       <div className="absolute -bottom-14 md:bottom-6 left-1/2 transform -translate-x-1/2">
         <div className="w-10 h-10 border-2 border-primary rounded-full flex items-center justify-center animate-bounce">
-          <svg
-            className="w-5 h-5 text-primary"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
+          <a href="#about">
+            <svg
+              className="w-5 h-5 text-primary"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
