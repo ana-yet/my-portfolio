@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import SkillCard from "./SkillCard";
 
 const SkillsSection = () => {
-  // 3. Add a 'category' to each skill object
   const skills = [
     {
       name: "HTML",
@@ -62,6 +61,13 @@ const SkillsSection = () => {
       category: "Backend",
     },
     {
+      name: "Firebase",
+      icon: "https://img.icons8.com/color/96/firebase.png",
+      level: "Intermediate",
+      percentage: 75,
+      category: "Backend",
+    },
+    {
       name: "GitHub",
       icon: "https://img.icons8.com/color/96/github.png",
       level: "Tool",
@@ -73,6 +79,34 @@ const SkillsSection = () => {
       icon: "https://img.icons8.com/color/96/visual-studio-code-2019.png",
       level: "Tool",
       percentage: 95,
+      category: "Tools",
+    },
+    {
+      name: "Vercel",
+      icon: "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+      level: "Tool",
+      percentage: 85,
+      category: "Tools",
+    },
+    {
+      name: "JWT",
+      icon: "https://jwt.io/img/pic_logo.svg",
+      level: "Tool",
+      percentage: 80,
+      category: "Tools",
+    },
+    {
+      name: "Stripe",
+      icon: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg",
+      level: "Tool",
+      percentage: 75,
+      category: "Tools",
+    },
+    {
+      name: "Canva",
+      icon: "https://img.icons8.com/color/96/canva.png",
+      level: "Advanced",
+      percentage: 90,
       category: "Tools",
     },
   ];
@@ -90,7 +124,6 @@ const SkillsSection = () => {
     },
   };
 
-  // 5. Filter skills based on the active category
   const filteredSkills =
     activeCategory === "All"
       ? skills
@@ -98,7 +131,6 @@ const SkillsSection = () => {
 
   console.log(filteredSkills);
 
-  // Define categories for the filter buttons
   const categories = ["All", "Frontend", "Backend", "Tools"];
 
   return (
@@ -116,7 +148,6 @@ const SkillsSection = () => {
           <div className="w-24 h-1 bg-accent bg-gradient-to-r from-accent to-primary mx-auto mb-12"></div>
         </motion.div>
 
-        {/* 6. Filter Buttons UI */}
         <div className="flex justify-center items-center gap-2 sm:gap-4 mb-12 flex-wrap">
           {categories.map((category) => (
             <button
@@ -134,7 +165,6 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        {/* 7. Render the filtered list and wrap with AnimatePresence */}
         <motion.div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 max-w-6xl mx-auto"
           variants={containerVariants}
