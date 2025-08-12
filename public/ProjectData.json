@@ -1,5 +1,24 @@
 [
   {
+    "title": "SoulMate",
+    "description": "A modern and secure matrimonial platform where users can create detailed biodata, explore matches, and share marriage success stories. The platform offers a premium membership system and personalized dashboards for a smooth experience.",
+    "features": [
+      "Create and manage biodata with role-based access (User/Admin)",
+      "Send, approve, and track contact requests with premium visibility",
+      "Share and browse marriage success stories with reviews and images"
+    ],
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Firebase",
+      "Express.js",
+      "MongoDB"
+    ],
+    "githubLink": "https://github.com/ana-yet/soulmate-client",
+    "liveLink": "https://soul-m-ate.vercel.app",
+    "imageUrl": "https://i.ibb.co.com/Xxt7ND5k/soulmate.webp"
+  },
+  {
     "title": "Service Review System",
     "description": "A full-featured review platform where users can explore services, leave ratings, and manage personal feedback. Built with secure authentication and a responsive, interactive UI.",
     "features": [
@@ -18,7 +37,7 @@
     ],
     "githubLink": "https://github.com/ana-yet/review-sys-client",
     "liveLink": "https://review-system-app.web.app/",
-    "imageUrl": "https://i.ibb.co/nNBh29dD/review-system-app.png"
+    "imageUrl": "https://i.ibb.co.com/5X4svNQm/recipe.webp"
   },
   {
     "title": "Recipe Book",
@@ -39,26 +58,6 @@
     ],
     "githubLink": "https://github.com/ana-yet/recipe-book-client",
     "liveLink": "https://recipe-book-525e2.web.app/",
-    "imageUrl": "https://i.ibb.co/4RyLTDT5/recipe-book.png"
-  },
-  {
-    "title": "Job Hunter",
-    "description": "A client-side job exploration platform featuring job listings, company reviews, and insightful blogs. Built with a responsive design, interactive UI, and seamless navigation to help users find opportunities and resources effortlessly.",
-    "features": [
-      "Explore and read company reviews to evaluate employers",
-      "Access informative blogs related to career development",
-      "Search and filter job posts for specific criteria",
-      "Fully responsive design for both desktop and mobile"
-    ],
-    "technologies": [
-      "React",
-      "Tailwind CSS",
-      "Firebase",
-      "React Router DOM",
-      "Framer Motion"
-    ],
-    "githubLink": "https://github.com/ana-yet/job-hunter-source",
-    "liveLink": "https://job-hunter-seven.vercel.app/",
-    "imageUrl": "https://i.ibb.co/35pjJMN1/job-hunter.png"
+    "imageUrl": "https://i.ibb.co.com/DgGXsZZw/service-review.webp"
   }
 ]
