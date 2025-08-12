@@ -9,7 +9,7 @@ const Banner = () => {
   return (
     <section
       id="home"
-      className="min-h-[calc(100vh-15vh)] max-w-6xl mx-auto flex items-center justify-center text-white relative px-4 py-20 md:py-0 bg-[#0a0a0a]"
+      className="min-h-[calc(100vh-15vh)] max-w-6xl mx-auto flex items-center justify-start text-white relative py-20 md:py-0 bg-[#0a0a0a]"
     >
       <div className="w-full flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16 lg:gap-24">
         {/* Left Side - Content */}
@@ -24,7 +24,7 @@ const Banner = () => {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-lg mx-auto md:mx-0 animate-fadeInUp delay-100">
-            A creative{" "}
+            A creative
             <span className="text-primary font-medium">
               MERN stack developer
             </span>{" "}
