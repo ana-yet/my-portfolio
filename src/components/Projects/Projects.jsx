@@ -19,7 +19,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-24 container mx-auto">
+    <section id="projects" className="py-24 px-3 container mx-auto">
       {/* title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

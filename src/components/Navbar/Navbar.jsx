@@ -141,7 +141,7 @@ const Navbar = () => {
           : "py-3 md:py-6 bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-0">
         <div className="flex items-center gap-3 md:gap-5">
           <Logo />
           <div className="hidden sm:flex gap-2 md:gap-3 items-center">

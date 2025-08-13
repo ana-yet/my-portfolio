@@ -39,7 +39,7 @@ const AboutMe = () => {
   };
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-[#0a0a0a]">
+    <section id="about" className="py-16 md:py-24 px-3 bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"

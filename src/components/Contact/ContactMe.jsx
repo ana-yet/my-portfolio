@@ -106,7 +106,7 @@ const ContactMe = () => {
   };
 
   return (
-    <section id="contact" className="pb-24 pt-16">
+    <section id="contact" className="pb-24 pt-16 px-3 md:px-0">
       <div className="container mx-auto">
         {/* Section Title */}
         <motion.div
