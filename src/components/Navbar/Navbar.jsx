@@ -75,7 +75,7 @@ const NavLinks = ({ onLinkClick, isMobile = false }) => {
     <nav
       className={`flex ${
         isMobile
-          ? "flex-col space-y-6 items-center"
+          ? "flex-col space-y-6 items-center w-full"
           : "flex-row items-center space-x-4 md:space-x-8"
       }`}
     >
@@ -141,7 +141,7 @@ const Navbar = () => {
           : "py-3 md:py-6 bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex justify-between items-center ">
+      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
         <div className="flex items-center gap-3 md:gap-5">
           <Logo />
           <div className="hidden sm:flex gap-2 md:gap-3 items-center">
@@ -186,49 +186,38 @@ const Navbar = () => {
             whileTap={{ scale: 0.9 }}
           >
             <AnimatePresence mode="wait">
-              {isMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                >
-                  <IoMdClose size={28} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                >
-                  <IoMdMenu size={28} />
-                </motion.div>
-              )}
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+              >
+                <IoMdMenu size={28} />
+              </motion.div>
             </AnimatePresence>
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Right Side */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
             <motion.div
-              className="md:hidden fixed inset-0 bg-black/70 z-50"
+              className="md:hidden fixed inset-0 bg-black/70 z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMenu}
             />
             <motion.div
-              className="md:hidden fixed top-0 right-0 h-screen w-72 bg-[#161616] p-6 flex flex-col items-center justify-start space-y-8 z-50 overflow-y-auto"
+              className="md:hidden fixed top-0 right-0 h-screen w-3/4 max-w-sm bg-[#161616] p-6 flex flex-col space-y-8 z-50 overflow-y-auto shadow-xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", ease: "easeInOut" }}
             >
-              <div className="w-full flex justify-between items-center mb-4">
+              <div className="w-full flex justify-between items-center">
                 <Logo />
                 <button
                   onClick={closeMenu}
@@ -239,7 +228,7 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <div className="flex sm:hidden gap-4 mb-4">
+              <div className="flex sm:hidden gap-4">
                 <a
                   target="_blank"
                   href="https://github.com/ana-yet"
@@ -265,7 +254,7 @@ const Navbar = () => {
               </div>
 
               <NavLinks onLinkClick={closeMenu} isMobile />
-              <div className="w-full px-4">
+              <div className="w-full">
                 <DownloadButton isMobile />
               </div>
             </motion.div>
